@@ -25,18 +25,34 @@
 		<div class="sk-rotating-plane"></div>
 	</div>
 </template>
-
 <script>
-	export default {
-		data() {
-			return {
+	import { loginApi } from '~/api/api.js'
 
-			}
-		},
+	export default {
 		methods: {
+			// login: async function() {
+			// 	const data = {
+			// 		phone: '18638539582',
+			// 		password:"aaaa"
+			// 	};
+			// 	const params = {
+			// 		a:'123'
+			// 	}
+			// 	let res = await loginApi(data,params);
+			// 	console.log(res);
+			// },
 			login() {
-				window.location.href = "/menu/index.vue"
-			}
+				const data = {
+					phone: '18638539582',
+					password: "aaaa"
+				};
+				const params = {
+					a: '123'
+				}
+				loginApi(data, params).then(res => {
+					console.log(res)
+				});
+			},
 		}
 	}
 </script>

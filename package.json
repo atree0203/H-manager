@@ -3,18 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "description": "A management system written using vue+elementUI",
-  "author": "hsianglee",
+  "author": "atree0203",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "element-ui": "^2.10.1",
+    "qs": "^6.9.1",
     "vue": "^2.6.10",
+    "vue-axios": "^2.1.5",
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-i18n": "^1.13.1",
+    "vux": "^2.9.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.4",
@@ -22,6 +28,8 @@
     "@vue/cli-service": "^3.0.4",
     "@vue/test-utils": "1.0.0-beta.29",
     "chai": "^4.1.2",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10"
