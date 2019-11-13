@@ -15,7 +15,10 @@ export const routeList = [
 		},
 		component: () => import('~/layout/redirect/index')
 	},
-	
+	// {
+	// 	path: '/',
+	// 	component: () => import('~/views/login/login'),
+	// },
 	{
 		path: '/index',
 		meta: {
