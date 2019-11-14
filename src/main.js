@@ -1,47 +1,46 @@
 import Vue from 'vue'
-import App from './App.vue'
 import router from '~/router/index'
 import vueResource from 'vue-resource'
-
-import Vuex from 'vuex';
-// import vuexI18n from 'vuex-i18n';
-import store from '~/store/index'
+import VueI18n from 'vue-i18n'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'element-ui/lib/theme-chalk/display.css';
-// import { LoadingPlugin } from 'vux'
-// Vue.use(LoadingPlugin)
+import App from './App.vue'
+import store from '~/store/index'
 
 Vue.use(ElementUI);
 Vue.use(vueResource)
-Vue.use(Vuex);
+Vue.use(VueI18n)
+
+const i18n = new VueI18n({
+	locale: 'cn', // 设置应用的语言
+	fallbackLocale: 'en', // 默认语言设置，当其他语言没有的情况下，使用en作为默认语言
+	messages: {
+		cn: {
+			phone: '手机号',
+			phonePlaceHolder:'请输入您的手机号',
+			pwd:'密码',
+			pwdPlaceHolder:'请输入您的密码',
+			loginBtn:'登录'
+		},
+		en: {
+			phone: 'phone number',
+			phonePlaceHolder:'Please enter your mobile number',
+			pwd:'password',
+			pwdPlaceHolder:'Please enter your password',
+			loginBtn:'sign in'
+		}
+	}
+})
 
 Vue.config.productionTip = false
 
-// const Store = new Vuex.Store({
-//     modules: {
-//         i18n: vuexI18n.store
-//     }
-// });
-// Vue.use(vuexI18n.plugin, Store);
-// const translationsEn = {
-//     "content": "This is some {type} content"
-// };
-
-// translations can be kept in separate files for each language
-// i.e. resources/i18n/de.json.
-// add translations directly to the application
-
-// Vue.i18n.add('en', translationsEn);
-//  
-// // set the start locale to use
-// Vue.i18n.set('en');
-
 
 const app = new Vue({
-  router,
-  store,
-  render: h => h(App)
+	router,
+	store,
+	i18n,
+	render: h => h(App)
 }).$mount('#app')
 
 export default app;

@@ -2,6 +2,7 @@ import axios from "axios";
 import qs from "qs";
 import app from "../main.js";
 
+
 /****** 创建axios实例 ******/
 const service = axios.create({
 	//baseURL: process.env.BASE_URL,  // api的base_url
@@ -11,10 +12,6 @@ const service = axios.create({
 
 /****** request拦截器==>对请求参数做处理 ******/
 service.interceptors.request.use(config => {
-	// app.$vux.loading.show({
-	// 	text: '数据加载中……'
-	// });
-
 	config.method === ('post' || 'put') ?
 		config.data = qs.stringify({ ...config.data
 		}) :
@@ -25,10 +22,6 @@ service.interceptors.request.use(config => {
 	return config;
 }, error => { //请求错误处理
 	console.log(error)
-	// app.$vux.toast.show({
-	// 	type: 'warn',
-	// 	text: error
-	// });
 	Promise.reject(error)
 });
 
@@ -37,15 +30,11 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(
 	response => { //成功请求到数据
 		console.log(response)
-		// app.$vux.loading.hide();
 		//这里根据后端提供的数据进行对应的处理
 		if (response.data) {
 			return response.data;
 		} else {
-			// app.$vux.toast.show({ //常规错误处理
-			// 	type: 'warn',
-			// 	text: response.data
-			// });
+
 		}
 	},
 	error => { //响应错误处理
@@ -55,10 +44,6 @@ service.interceptors.response.use(
 		// let text = JSON.parse(JSON.stringify(error)).response.status === 404 ?
 		// 	'404' :
 		// 	'网络异常，请重试';
-		// app.$vux.toast.show({
-		// 	type: 'warn',
-		// 	text: text
-		// });
 
 		return error.response
 	}

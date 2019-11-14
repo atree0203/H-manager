@@ -7,19 +7,19 @@
 			<div class="login-center clearfix">
 				<div class="login-center-img"><img src="../../assets/img/name.png" /></div>
 				<div class="login-center-input">
-					<input type="text" name="" value="" placeholder="请输入您的手机号" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的手机号'" />
-					<div class="login-center-input-text">用户名</div>
+					<input type="text" name="" value="" :placeholder="phonePlaceHolder" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的手机号'" />
+					<div class="login-center-input-text">{{$t('phone')}}</div>
 				</div>
 			</div>
 			<div class="login-center clearfix">
 				<div class="login-center-img"><img src="../../assets/img/password.png" /></div>
 				<div class="login-center-input">
 					<input type="password" name="" value="" placeholder="请输入您的密码" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'" />
-					<div class="login-center-input-text">密码</div>
+					<div class="login-center-input-text">{{$t('pwd')}}</div>
 				</div>
 			</div>
 			<div class="login-button" @click="login">
-				登陆
+				{{ loginText }}
 			</div>
 		</div>
 		<div class="sk-rotating-plane"></div>
@@ -27,8 +27,16 @@
 </template>
 <script>
 	import { loginApi } from '~/api/api.js'
+	import { Loading } from 'element-ui';
 
 	export default {
+		data(){
+			return{
+				loginText:'登录',
+				phonePlaceHolder:this.$t('phonePlaceHolder')
+			}
+		},
+
 		methods: {
 			// login: async function() {
 			// 	const data = {
@@ -41,15 +49,21 @@
 			// 	let res = await loginApi(data,params);
 			// 	console.log(res);
 			// },
+			phoneBlur(){
+				this.phonePlaceHolder = this.$t('phonePlaceHolder')
+			},
 			login() {
-				const data = {
-					phone: '18638539582',
-					password: "aaaa"
-				};
-				const params = {
-					a: '123'
-				}
+				// let loadingInstance = Loading.service({
+				// 	text:'登录...'
+				// })
+				this.loginText = '登录中...'
+				const data = { phone: '18638539582',password: "aaaa" };
+				const params = { a: '123' }
 				loginApi(data, params).then(res => {
+					// this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+					//   loadingInstance.close();
+					// });
+					this.loginText = '登录'
 					console.log(res)
 				});
 			},
