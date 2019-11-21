@@ -1,16 +1,20 @@
-import Vue from 'vue'
-import router from '~/router/index'
-import vueResource from 'vue-resource'
-import VueI18n from 'vue-i18n'
+import Vue from 'vue';
+import router from '~/router/index';
+import vueResource from 'vue-resource';
+import VueI18n from 'vue-i18n';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'element-ui/lib/theme-chalk/display.css';
-import App from './App.vue'
-import store from '~/store/index'
+import App from './App.vue';
+import store from '~/store/index';
+import echarts from 'echarts';
+
+Vue.prototype.$echarts = echarts;
 
 Vue.use(ElementUI);
-Vue.use(vueResource)
-Vue.use(VueI18n)
+Vue.use(vueResource);
+Vue.use(VueI18n);
+
 
 const i18n = new VueI18n({
 	locale: 'cn', // 设置应用的语言

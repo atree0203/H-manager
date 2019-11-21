@@ -20,5 +20,9 @@ module.exports = {
 				"~": path.join(__dirname, 'src/')
 			}
 		}
-	}
+	},
+	transpileDependencies: [
+		'vue-echarts',
+		'resize-detector'
+	]
 };

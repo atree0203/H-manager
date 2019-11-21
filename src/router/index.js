@@ -87,6 +87,14 @@ export const routeList = [
 		},
 		component: () => import('~/views/about/index.vue'),
 	},
+	// {
+	// 	path: '/echart',
+	// 	meta: {
+	// 		title: "饼状图",
+	// 		icon: "el-icon-sugar"
+	// 	},
+	// 	component: () => import('~/views/echart/index.vue'),
+	// },
 ]
 
 

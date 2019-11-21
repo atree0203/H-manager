@@ -11,7 +11,9 @@
             </el-breadcrumb>
         </div>
         <div class="app-navbar-right">
+			<language></language>
             <nav-search></nav-search>
+			
             <div class="app-navbar-right-screen">
                 <span>
                     <i v-if="!isFullScreen" class="el-icon-rank" @click="fullScreen"></i>
@@ -37,6 +39,7 @@
 <script>
 import { mapMutations } from 'vuex'
 import navSearch from "./navSearch"
+import language from "./language"
 export default {
     name: 'navbar',
     computed: {
@@ -56,7 +59,8 @@ export default {
         }
     },
     components: {
-        navSearch
+        navSearch,
+		language
     },
     methods: {
         ...mapMutations({

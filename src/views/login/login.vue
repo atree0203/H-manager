@@ -57,14 +57,30 @@
 				// 	text:'登录...'
 				// })
 				this.loginText = '登录中...'
-				const data = { phone: '18638539582',password: "aaaa" };
-				const params = { a: '123' }
+				// const data = { phone: '18638539582',password: "aaaa" };
+				const data = { username: 'heshipeng',password: 'heshipeng' };
+				const params = {  }
 				loginApi(data, params).then(res => {
 					// this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
 					//   loadingInstance.close();
 					// });
 					this.loginText = '登录'
 					console.log(res)
+					
+					if(res=== undefined){
+						this.$message.error('服务器连接超时');
+						return
+					}
+					if(res.code === 0){
+						// this.$store.state.push({token:res.data.token})
+						//commit('token', es.data.token);
+						//全局存储token
+						window.localStorage["token"] = JSON.stringify(res.data.token);
+						window.localStorage["phone"] = JSON.stringify(data.username);
+					}else{
+						this.$message.error(res.desc);
+					}
+					console.log(this.$store.state)
 				});
 			},
 		}
