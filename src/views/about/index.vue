@@ -2,7 +2,7 @@
 	<div>
 		<div class="container">
 			<div id="piePict" style="width: 600px;height:600px;"></div>
-			<div id="technologyPict" style="width: 600px;height::;00px;"></div>
+			<div id="technologyPict" style="width: 600px;height:600px;"></div>
 		</div>
 		<div class="container">
 			<div id="histogramPict" style="width: 800px;height:400px;"></div>
@@ -17,7 +17,7 @@
 	export default {
 		data() {
 			return {
-
+				time: Number(10)
 			}
 		},
 		mounted() {
@@ -25,8 +25,10 @@
 			this.technologyPict();
 			this.histogramPicture();
 			this.histogramPict2();
+			// this.timeInfinite();
 		},
 		methods: {
+
 			histogramPict2() {
 				let myChart = this.$echarts.init(document.getElementById('histogramPict2'))
 				// 绘制图表
@@ -564,11 +566,14 @@
 					]
 				})
 			},
+			timeInfinite() {
+
+			},
 			piePict() {
 				// 基于准备好的dom，初始化echarts实例
 				let demoData = [{
 					name: '时钟',
-					value: 60,
+					value: this.time,
 					unit: '%',
 					pos: ['50%', '50%'],
 					range: [0, 100],
@@ -577,212 +582,220 @@
 				}]
 				let highlight = 'white';
 				let myChart = this.$echarts.init(document.getElementById('piePict'))
-				// 绘制图表
-				myChart.setOption({
-					backgroundColor: '#212121',
-					series: (() => {
-						var result = [];
+				setInterval(() => {
+					
+					// 绘制图表
+					myChart.setOption({
+						backgroundColor: '#212121',
+						series: (() => {
+							var result = [];
 
-						demoData.forEach((item) => {
-							result.push(
-								// 内侧指针、数值显示
-								{
-									name: item.name,
-									type: 'gauge',
-									center: item.pos,
-									radius: '90%',
-									startAngle: 225,
-									endAngle: -45,
-									min: 0,
-									max: 100,
-									axisLine: {
-										show: true,
-										lineStyle: {
-											width: 2,
-											color: [
-												[
-													item.value / 100, new this.$echarts.graphic.LinearGradient(
-														0, 0, 1, 0, [{
-																offset: 0,
-																color: 'rgba(255,255,255,0)',
-															},
-															{
-																offset: 1,
-																color: 'white',
-															}
-														]
-													)
-												],
-												[
-													1, 'rgba(255,255,255, 0)'
+							demoData.forEach((item) => {
+								result.push(
+									// 内侧指针、数值显示
+									{
+										name: item.name,
+										type: 'gauge',
+										center: item.pos,
+										radius: '90%',
+										startAngle: 225,
+										endAngle: -45,
+										min: 0,
+										max: 100,
+										axisLine: {
+											show: true,
+											lineStyle: {
+												width: 2,
+												color: [
+													[
+														this.time / 100, new this.$echarts.graphic.LinearGradient(
+															0, 0, 1, 0, [{
+																	offset: 0,
+																	color: 'rgba(255,255,255,0)',
+																},
+																{
+																	offset: 1,
+																	color: 'white',
+																}
+															]
+														)
+													],
+													[
+														1, 'rgba(255,255,255, 0)'
+													]
 												]
-											]
-										}
-									},
-									axisTick: {
-										show: 0,
-									},
-									splitLine: {
-										show: 0,
-									},
-									axisLabel: {
-										show: 0
-									},
-									pointer: {
-										show: 0,
-									},
-									detail: {
-										show: 0
-									},
-									data: [{
-										value: item.value,
-									}]
-								},
-								// 外围刻度
-								{
-									type: 'gauge',
-									center: item.pos,
-									radius: '50%', // 1行3个
-									splitNumber: item.splitNum || 10,
-									min: 0,
-									max: 100,
-									startAngle: 225,
-									endAngle: -45,
-									axisLine: {
-										show: true,
-										lineStyle: {
-											width: 1,
-											color: [
-												[1, 'rgba(0,0,0,0)']
-											]
-										}
-									}, //仪表盘轴线
-									axisTick: {
-										show: true,
-										lineStyle: {
-											color: 'rgba(255,255,255,0.6)',
-											width: 1
-										},
-										length: -6
-									}, //刻度样式
-									splitLine: {
-										show: true,
-										length: 10,
-										lineStyle: {
-											color: 'rgba(255,255,255,0.6)'
-										}
-									}, //分隔线样式
-									axisLabel: {
-										show: true,
-										distance: 2,
-										textStyle: {
-											color: highlight,
-											fontSize: '12',
-											fontWeight: 'bold'
-										}
-									},
-									pointer: {
-										show: 0
-									},
-									detail: {
-										show: 0
-									}
-								},
-
-								// 内侧指针、数值显示
-								{
-									name: item.name,
-									type: 'gauge',
-									center: item.pos,
-									radius: '54%',
-									startAngle: 225,
-									endAngle: -45,
-									min: 0,
-									max: 100,
-									axisLine: {
-										show: true,
-										lineStyle: {
-											width: 50,
-											color: [
-												[
-													item.value / 100, new this.$echarts.graphic.LinearGradient(
-														0, 0, 1, 0, [{
-																offset: 0,
-																color: 'rgba(0,0,0, 0)',
-															},
-															{
-																offset: 1,
-																color: item.colorb,
-															}
-														]
-													)
-												],
-												[
-													1, 'rgba(255,255,255, 0)'
-												]
-											]
-										}
-									},
-									axisTick: {
-										show: 0,
-									},
-									splitLine: {
-										show: 0,
-									},
-									axisLabel: {
-										show: 0
-									},
-									pointer: {
-										show: true,
-										length: '102%',
-										width: 3
-									},
-									title: {
-										show: true,
-										offsetCenter: [0, '65%'],
-										color: 'white',
-										fontSize: 20,
-										/* backgroundColor: "#D8d8d8",*/
-										borderRadius: 21,
-										padding: 5
-									},
-									detail: {
-										show: true,
-										offsetCenter: [0, 0],
-										textStyle: {
-											fontSize: 25,
-											color: '#fff'
-										},
-										formatter: [
-											'{value}' + (item.unit || ''),
-											/* '{name|' + item.name + '}'*/
-										].join('\n'),
-
-										rich: {
-											name: {
-												fontSize: 20,
-												lineHeight: 10,
-												color: '#ddd',
-												padding: [30, 0, 0, 0]
 											}
+										},
+										axisTick: {
+											show: 0,
+										},
+										splitLine: {
+											show: 0,
+										},
+										axisLabel: {
+											show: 0
+										},
+										pointer: {
+											show: 0,
+										},
+										detail: {
+											show: 0
+										},
+										data: [{
+											value: this.time,
+										}]
+									},
+									// 外围刻度
+									{
+										type: 'gauge',
+										center: item.pos,
+										radius: '50%', // 1行3个
+										splitNumber: item.splitNum || 10,
+										min: 0,
+										max: 100,
+										startAngle: 225,
+										endAngle: -45,
+										axisLine: {
+											show: true,
+											lineStyle: {
+												width: 1,
+												color: [
+													[1, 'rgba(0,0,0,0)']
+												]
+											}
+										}, //仪表盘轴线
+										axisTick: {
+											show: true,
+											lineStyle: {
+												color: 'rgba(255,255,255,0.6)',
+												width: 1
+											},
+											length: -6
+										}, //刻度样式
+										splitLine: {
+											show: true,
+											length: 10,
+											lineStyle: {
+												color: 'rgba(255,255,255,0.6)'
+											}
+										}, //分隔线样式
+										axisLabel: {
+											show: true,
+											distance: 2,
+											textStyle: {
+												color: highlight,
+												fontSize: '12',
+												fontWeight: 'bold'
+											}
+										},
+										pointer: {
+											show: 0
+										},
+										detail: {
+											show: 0
 										}
 									},
-									itemStyle: {
-										normal: {
-											color: highlight,
-										}
-									},
-									data: [{
-										value: item.value,
-										name: item.name
-									}]
-								}
-							);
-						});
 
-						return result;
-					})()
-				})
+									// 内侧指针、数值显示
+									{
+										name: item.name,
+										type: 'gauge',
+										center: item.pos,
+										radius: '54%',
+										startAngle: 225,
+										endAngle: -45,
+										min: 0,
+										max: 100,
+										axisLine: {
+											show: true,
+											lineStyle: {
+												width: 50,
+												color: [
+													[
+														this.time / 100, new this.$echarts.graphic.LinearGradient(
+															0, 0, 1, 0, [{
+																	offset: 0,
+																	color: 'rgba(0,0,0, 0)',
+																},
+																{
+																	offset: 1,
+																	color: item.colorb,
+																}
+															]
+														)
+													],
+													[
+														1, 'rgba(255,255,255, 0)'
+													]
+												]
+											}
+										},
+										axisTick: {
+											show: 0,
+										},
+										splitLine: {
+											show: 0,
+										},
+										axisLabel: {
+											show: 0
+										},
+										pointer: {
+											show: true,
+											length: '102%',
+											width: 3
+										},
+										title: {
+											show: true,
+											offsetCenter: [0, '65%'],
+											color: 'white',
+											fontSize: 20,
+											/* backgroundColor: "#D8d8d8",*/
+											borderRadius: 21,
+											padding: 5
+										},
+										detail: {
+											show: true,
+											offsetCenter: [0, 0],
+											textStyle: {
+												fontSize: 25,
+												color: '#fff'
+											},
+											formatter: [
+												'{value}' + (item.unit || ''),
+												/* '{name|' + item.name + '}'*/
+											].join('\n'),
+
+											rich: {
+												name: {
+													fontSize: 20,
+													lineHeight: 10,
+													color: '#ddd',
+													padding: [30, 0, 0, 0]
+												}
+											}
+										},
+										itemStyle: {
+											normal: {
+												color: highlight,
+											}
+										},
+										data: [{
+											value: this.time,
+											name: item.name
+										}]
+									}
+								);
+							});
+
+							return result;
+						})()
+					})
+
+					this.time = Number(this.time) + Number(1)
+					if (this.time == Number(100)) {
+						this.time = Number(0)
+					}
+				}, 1000)
 			},
 			_pie1() {
 				let dataArr = [];

@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import layout from '~/layout/index.vue'
+import login from '~/views/login/login'
 
 Vue.use(Router)
 
-export const routeList = [
-	{
+
+export const routeList = [{
 		path: '/redirect/:path*',
 		component: layout,
 		meta: {
@@ -15,15 +16,13 @@ export const routeList = [
 		},
 		component: () => import('~/layout/redirect/index')
 	},
-	// {
-	// 	path: '/',
-	// 	component: () => import('~/views/login/login'),
-	// },
+
 	{
 		path: '/index',
 		meta: {
 			title: "首页",
-			icon: "el-icon-s-home"
+			icon: "el-icon-s-home",
+			// isHide: true
 		},
 		component: () => import('~/views/index/index.vue'),
 	},
@@ -101,12 +100,17 @@ export const routeList = [
 export default new Router({
 	mode: 'history',
 	routes: [{
-		path: '/',
-		component: layout,
-		meta: {
-			title: "组件",
-			icon: "el-icon-setting"
+			path: '/login',
+			component: login
 		},
-		children: routeList
-	}, ]
+		{
+			path: '/',
+			component: layout,
+			meta: {
+				title: "组件",
+				icon: "el-icon-setting"
+			},
+			children: routeList
+		}
+	]
 })

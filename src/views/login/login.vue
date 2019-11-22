@@ -53,6 +53,7 @@
 				this.phonePlaceHolder = this.$t('phonePlaceHolder')
 			},
 			login() {
+				this.$router.push({ path: '/' })
 				// let loadingInstance = Loading.service({
 				// 	text:'登录...'
 				// })
