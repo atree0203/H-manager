@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import layout from '~/layout/index.vue'
+import login from '~/views/login/login'
 
 Vue.use(Router)
+
 
 export const routeList = [
 	{
@@ -19,7 +21,8 @@ export const routeList = [
 		path: '/index',
 		meta: {
 			title: "首页",
-			icon: "el-icon-s-home"
+			icon: "el-icon-s-home",
+			// isHide: true
 		},
 		component: () => import('~/views/index/index.vue'),
 	},
