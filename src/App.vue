@@ -34,4 +34,7 @@
 	#app {
 		height: 100%;
 	}
+	// #nprogress .bar {
+	// 		background: #F56C6C !important; //自定义颜色
+	// }
 </style>

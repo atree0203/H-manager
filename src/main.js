@@ -8,8 +8,32 @@ import 'element-ui/lib/theme-chalk/display.css';
 import App from './App.vue';
 import store from '~/store/index';
 import echarts from 'echarts';
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 Vue.prototype.$echarts = echarts;
+
+
+NProgress.inc(0.2)
+NProgress.configure({ easing: 'ease', speed: 500, showSpinner: false })
+
+
+router.beforeEach((to, from, next) => {
+	NProgress.start()
+	next()
+})
+
+router.afterEach(transition => {
+	NProgress.done()
+})
+
+// Vue.http.interceptors.push((request, next) => {
+//   NProgress.start();
+// 
+//   next((response)=>{
+//     NProgress.done();
+//   });
+// });
 
 Vue.use(ElementUI);
 Vue.use(vueResource);

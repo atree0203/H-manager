@@ -15,10 +15,6 @@ export const routeList = [
 		},
 		component: () => import('~/layout/redirect/index')
 	},
-	// {
-	// 	path: '/',
-	// 	component: () => import('~/views/login/login'),
-	// },
 	{
 		path: '/index',
 		meta: {
@@ -100,13 +96,19 @@ export const routeList = [
 
 export default new Router({
 	mode: 'history',
-	routes: [{
-		path: '/',
-		component: layout,
-		meta: {
-			title: "组件",
-			icon: "el-icon-setting"
+	routes: [	
+		{
+			path: '/login',
+			component: () => import('~/views/login/login'),
 		},
-		children: routeList
-	}, ]
+		{
+			path: '/',
+			component: layout,
+			meta: {
+				title: "组件",
+				icon: "el-icon-setting"
+			},
+			children: routeList
+		}
+	]
 })

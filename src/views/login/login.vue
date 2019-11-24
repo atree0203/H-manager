@@ -22,12 +22,14 @@
 				{{ loginText }}
 			</div>
 		</div>
-		<div class="sk-rotating-plane"></div>
+		<div class="sk-rotating-plane"></div>	
 	</div>
 </template>
 <script>
 	import { loginApi } from '~/api/api.js'
 	import { Loading } from 'element-ui';
+	// import './particles.min.js'
+	// import './app.js'
 
 	export default {
 		data(){
@@ -36,7 +38,6 @@
 				phonePlaceHolder:this.$t('phonePlaceHolder')
 			}
 		},
-
 		methods: {
 			// login: async function() {
 			// 	const data = {
@@ -53,6 +54,7 @@
 				this.phonePlaceHolder = this.$t('phonePlaceHolder')
 			},
 			login() {
+				this.$router.push({ path: '/' })
 				// let loadingInstance = Loading.service({
 				// 	text:'登录...'
 				// })
