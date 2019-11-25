@@ -1,6 +1,5 @@
 ## vue + elementUI 创建后台管理系统框子
 
-**[测试demo](https://vueadmin.hsianglee.cn)**
 
 ### 下载项目
 1. 使用脚手架
@@ -10,7 +9,7 @@
     ```
 2. 直接下载
     ```
-    git clone https://github.com/hsiangleev/vue-element-manager.git
+    git clone https://github.com/PanJiaChen/vue-element-admin
     ```
 
 ### 构建项目
