@@ -1,0 +1,15 @@
+{
+	"common": {
+		"home": "首页",
+		"login": "登录",
+		"register": "注册",
+		"appDownload": "APP 下载"
+	},
+	"login": {
+		"phone": "手机号",
+		"phonePlaceHolder": "请输入您的手机号",
+		"pwd": "密码",
+		"pwdPlaceHolder": "请输入您的密码",
+		"loginBtn": "登录"
+	}
+}

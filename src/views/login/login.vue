@@ -7,35 +7,41 @@
 			<div class="login-center clearfix">
 				<div class="login-center-img"><img src="../../assets/img/name.png" /></div>
 				<div class="login-center-input">
-					<input type="text" name="" value="" :placeholder="phonePlaceHolder" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的手机号'" />
-					<div class="login-center-input-text">{{$t('phone')}}</div>
-				</div>
-			</div>
-			<div class="login-center clearfix">
-				<div class="login-center-img"><img src="../../assets/img/password.png" /></div>
-				<div class="login-center-input">
-					<input type="password" name="" value="" placeholder="请输入您的密码" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'" />
-					<div class="login-center-input-text">{{$t('pwd')}}</div>
-				</div>
-			</div>
-			<div class="login-button" @click="login">
-				{{ loginText }}
+					<input type="text" name="" value="" :placeholder="phonePlaceHolder" @focus="phoneFocus()" @blur="phoneBlur()" />
+					<div class="
+					 login-center-input-text">{{$t('login.phone')}}</div>
 			</div>
 		</div>
-		<div class="sk-rotating-plane"></div>	
+		<div class="login-center clearfix">
+			<div class="login-center-img"><img src="../../assets/img/password.png" /></div>
+			<div class="login-center-input">
+				<input type="password" name="" value="" :placeholder="pwdPlaceHolder" @focus="pwdFocus()" @blur="pwdBlur()" />
+				<div class="login-center-input-text">{{$t('login.pwd')}}</div>
+			</div>
+		</div>
+		<div class="login-button" @click="login">
+			{{ loginText }}
+		</div>
+	</div>
+	<div class="sk-rotating-plane"></div>
 	</div>
 </template>
 <script>
-	import { loginApi } from '~/api/api.js'
-	import { Loading } from 'element-ui';
+	import {
+		loginApi
+	} from '~/api/api.js'
+	import {
+		Loading
+	} from 'element-ui';
 	// import './particles.min.js'
 	// import './app.js'
 
 	export default {
-		data(){
-			return{
-				loginText:'登录',
-				phonePlaceHolder:this.$t('phonePlaceHolder')
+		data() {
+			return {
+				loginText: '登录',
+				phonePlaceHolder: this.$t('login.phonePlaceHolder'),
+				pwdPlaceHolder:this.$t('login.pwdPlaceHolder')
 			}
 		},
 		methods: {
@@ -50,36 +56,48 @@
 			// 	let res = await loginApi(data,params);
 			// 	console.log(res);
 			// },
-			phoneBlur(){
-				this.phonePlaceHolder = this.$t('phonePlaceHolder')
+			phoneFocus(){
+				this.phonePlaceHolder = ""
+			},
+			phoneBlur() {
+				this.phonePlaceHolder = this.$t('login.phonePlaceHolder')
+			},
+			pwdFocus(){
+				this.pwdPlaceHolder = ""
+			},
+			pwdBlur(){
+				this.pwdPlaceHolder = this.$t('login.pwdPlaceHolder')
 			},
 			login() {
-				this.$router.push({ path: '/' })
+				this.$router.push({
+					path: '/'
+				})
 				// let loadingInstance = Loading.service({
 				// 	text:'登录...'
 				// })
 				this.loginText = '登录中...'
-				// const data = { phone: '18638539582',password: "aaaa" };
-				const data = { username: 'heshipeng',password: 'heshipeng' };
-				const params = {  }
+				const data = {
+					username: 'heshipeng',
+					password: 'heshipeng'
+				};
+				const params = {}
 				loginApi(data, params).then(res => {
 					// this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
 					//   loadingInstance.close();
 					// });
 					this.loginText = '登录'
 					console.log(res)
-					
-					if(res=== undefined){
+
+					if (res === undefined) {
 						this.$message.error('服务器连接超时');
 						return
 					}
-					if(res.code === 0){
-						// this.$store.state.push({token:res.data.token})
-						//commit('token', es.data.token);
+					if (res.code === 0) {
+						//commit('token', res.data.token);
 						//全局存储token
 						window.localStorage["token"] = JSON.stringify(res.data.token);
 						window.localStorage["phone"] = JSON.stringify(data.username);
-					}else{
+					} else {
 						this.$message.error(res.desc);
 					}
 					console.log(this.$store.state)

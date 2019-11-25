@@ -1,0 +1,15 @@
+{
+	"common": {
+		"home": "Home",
+		"login": "Login",
+		"register": "Register",
+		"appDownload": "APP Download"
+	},
+	"login": {
+		"phone": "phone number",
+		"phonePlaceHolder": "Please enter your mobile number",
+		"pwd": "password",
+		"pwdPlaceHolder": "Please enter your password",
+		"loginBtn": "sign in"
+	}
+}
