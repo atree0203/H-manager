@@ -7,7 +7,8 @@ import app from "../main.js";
 const service = axios.create({
 	//baseURL: process.env.BASE_URL,  // api的base_url
 	// baseURL: 'https://awstest.chargo.cn:8001', // api的base_url
-	baseURL: 'http://192.168.3.60:1080', // api的base_url
+	// baseURL: 'http://192.168.3.60:1080', // api的base_url
+	baseURL: 'http://ec2-34-244-176-172.eu-west-1.compute.amazonaws.com:2333', // api的base_url
 	timeout: 20000 // 请求超时时间
 });
 
@@ -23,8 +24,8 @@ service.interceptors.request.use(config => {
 	config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 	config.headers['Accept-Language'] = 'en'
 	if(config.url !== 'auth/login'){
-		config.headers['Authorisation'] = 'Bearer '+ localStorage.getItem('token');; 
-		config.headers['token'] = localStorage.getItem('token'); 
+		config.headers['authorization'] = localStorage.getItem('token');
+		// config.headers['token'] = localStorage.getItem('token'); 
 	}
 	
 

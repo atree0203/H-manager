@@ -9,3 +9,11 @@ export const loginApi = (data,params) => {
 		params:params
     })
 };
+
+export const dataViewApi = (params) => {
+    return service({
+        url: 'source',
+        method: 'get',
+		params:params
+    })
+};

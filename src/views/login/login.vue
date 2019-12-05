@@ -10,20 +10,20 @@
 					<input type="text" name="" value="" :placeholder="phonePlaceHolder" @focus="phoneFocus()" @blur="phoneBlur()" />
 					<div class="
 					 login-center-input-text">{{$t('login.phone')}}</div>
+				</div>
+			</div>
+			<div class="login-center clearfix">
+				<div class="login-center-img"><img src="../../assets/img/password.png" /></div>
+				<div class="login-center-input">
+					<input type="password" name="" value="" :placeholder="pwdPlaceHolder" @focus="pwdFocus()" @blur="pwdBlur()" />
+					<div class="login-center-input-text">{{$t('login.pwd')}}</div>
+				</div>
+			</div>
+			<div class="login-button" @click="login">
+				{{ loginText }}
 			</div>
 		</div>
-		<div class="login-center clearfix">
-			<div class="login-center-img"><img src="../../assets/img/password.png" /></div>
-			<div class="login-center-input">
-				<input type="password" name="" value="" :placeholder="pwdPlaceHolder" @focus="pwdFocus()" @blur="pwdBlur()" />
-				<div class="login-center-input-text">{{$t('login.pwd')}}</div>
-			</div>
-		</div>
-		<div class="login-button" @click="login">
-			{{ loginText }}
-		</div>
-	</div>
-	<div class="sk-rotating-plane"></div>
+		<div class="sk-rotating-plane"></div>
 	</div>
 </template>
 <script>
@@ -33,6 +33,7 @@
 	import {
 		Loading
 	} from 'element-ui';
+	import { mapMutations } from 'vuex';
 	// import './particles.min.js'
 	// import './app.js'
 
@@ -41,10 +42,11 @@
 			return {
 				loginText: '登录',
 				phonePlaceHolder: this.$t('login.phonePlaceHolder'),
-				pwdPlaceHolder:this.$t('login.pwdPlaceHolder')
+				pwdPlaceHolder: this.$t('login.pwdPlaceHolder')
 			}
 		},
 		methods: {
+			...mapMutations(['changeLogin','changePhone']),
 			// login: async function() {
 			// 	const data = {
 			// 		phone: '18638539582',
@@ -56,16 +58,16 @@
 			// 	let res = await loginApi(data,params);
 			// 	console.log(res);
 			// },
-			phoneFocus(){
+			phoneFocus() {
 				this.phonePlaceHolder = ""
 			},
 			phoneBlur() {
 				this.phonePlaceHolder = this.$t('login.phonePlaceHolder')
 			},
-			pwdFocus(){
+			pwdFocus() {
 				this.pwdPlaceHolder = ""
 			},
-			pwdBlur(){
+			pwdBlur() {
 				this.pwdPlaceHolder = this.$t('login.pwdPlaceHolder')
 			},
 			login() {
@@ -94,9 +96,12 @@
 					}
 					if (res.code === 0) {
 						//commit('token', res.data.token);
-						//全局存储token
-						window.localStorage["token"] = JSON.stringify(res.data.token);
-						window.localStorage["phone"] = JSON.stringify(data.username);
+						let userToken = 'Bearer' + ' ' + res.data.token;
+						let phone = data.username;
+						// // 将用户token保存到vuex中
+						this.changeLogin({ Authorization: userToken });
+						this.changePhone({ phone: phone });
+						// window.localStorage["phone"] = data.username;
 					} else {
 						this.$message.error(res.desc);
 					}
