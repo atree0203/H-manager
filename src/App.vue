@@ -37,4 +37,11 @@
 	// #nprogress .bar {
 	// 		background: #F56C6C !important; //自定义颜色
 	// }
+	
+	.flex-row-center{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
 </style>

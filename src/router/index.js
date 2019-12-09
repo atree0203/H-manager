@@ -31,9 +31,16 @@ export const routeList = [
 		meta: {
 			title: "数据展示",
 			icon: "el-icon-s-home",
-			// isHide: true
 		},
 		component: () => import('~/views/dataView/index.vue'),
+	},
+	{
+		path: '/newslist',
+		meta: {
+			title: "新闻列表",
+			icon: "el-icon-s-home",
+		},
+		component: () => import('~/views/newslist/index.vue'),
 	},
 	{
 		path: '/components',

@@ -71,9 +71,6 @@
 				this.pwdPlaceHolder = this.$t('login.pwdPlaceHolder')
 			},
 			login() {
-				this.$router.push({
-					path: '/'
-				})
 				// let loadingInstance = Loading.service({
 				// 	text:'登录...'
 				// })
@@ -88,24 +85,16 @@
 					//   loadingInstance.close();
 					// });
 					this.loginText = '登录'
-					console.log(res)
-
-					if (res === undefined) {
-						this.$message.error('服务器连接超时');
-						return
-					}
-					if (res.code === 0) {
-						//commit('token', res.data.token);
+					if (res && res.code === 0) {
 						let userToken = 'Bearer' + ' ' + res.data.token;
 						let phone = data.username;
 						// // 将用户token保存到vuex中
 						this.changeLogin({ Authorization: userToken });
 						this.changePhone({ phone: phone });
-						// window.localStorage["phone"] = data.username;
-					} else {
-						this.$message.error(res.desc);
+						this.$router.push({
+							path: '/'
+						})
 					}
-					console.log(this.$store.state)
 				});
 			},
 		}

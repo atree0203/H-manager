@@ -189,31 +189,24 @@
 				this.loading = true
 				dataViewApi(params).then(res => {
 					this.loading = false
-					if (res === undefined) {
-						this.$message.error('服务器连接超时');
-						return
-					}
-					if (res.code === 0) {
+					if (res && res.code === 0) {
 						this.totalCount = res.data.total_count
 						this.tableData = res.data.result
-					} else {
-						this.$message.error(res.desc);
 					}
 				});
 			},
 			getCountry() {
 				countryApi().then(res => {
-					if (res.code === 0 && res.data) {
+					if (res && res.code === 0) {
 						this.countryArr = res.data
 					}
 				})
 			},
 			getNewsList(id) {
 				newsListApi(id).then(res => {
-					if (res.code === 0) {
+					if (res && res.code === 0) {
 						this.newsListData = res.data.result
 					}
-
 				})
 			},
 			loadMoreNews() {
