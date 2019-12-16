@@ -78,6 +78,15 @@
 				})
 			}
 		},
+		watch:{
+			'$route'(to,from){
+				console.log(to)
+				this.pageIndex = 0
+				this.newsListData = []
+				this.total_page = 1
+				this.scrollMoreData()
+			}
+		}
 	}
 </script>
 
