@@ -26,10 +26,11 @@ export const countryApi = (params) => {
 	})
 };
 
-export const newsListApi = (id) => {
+export const newsListApi = (id,params) => {
 	return service({
-		url: `news?source_id=${id}&page=1&page_size=10`,
-		method: 'get'
+		url: `news?source_id=${id}`,
+		method: 'get',
+		params: params
 	})
 };
 

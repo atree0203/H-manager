@@ -54,8 +54,10 @@
 			</el-table-column>
 			<el-table-column label="预览">
 				<template slot-scope="scope">
+					<!-- <router-link :to="'/newslist/'+scope.row.id"> -->
 					<el-button v-if="scope.row.job_type === 10" size="mini" type="primary" circle icon="el-icon-edit" @click="handleView(scope.row.id)">
 					</el-button>
+					<!-- </router-link> -->
 				</template>
 			</el-table-column>
 			<el-table-column label="操作">
@@ -160,8 +162,13 @@
 		},
 		methods: {
 			handleView(id) {
-				this.dialogTableVisible = true
-				this.getNewsList(id)
+				this.$store.commit('pushTagsCacheList', {
+					path: `/newslist/${id}`,
+					title: `新闻列表:${id}`,
+				})
+				this.$router.push({
+					path: `/newslist/${id}`
+				})
 			},
 			handleEdit(index, row) {
 				console.log(index, row);
@@ -203,7 +210,10 @@
 				})
 			},
 			getNewsList(id) {
-				newsListApi(id).then(res => {
+				newsListApi(id, {
+					page: 1,
+					page_size: 10
+				}).then(res => {
 					if (res && res.code === 0) {
 						this.newsListData = res.data.result
 					}

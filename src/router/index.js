@@ -7,16 +7,16 @@ Vue.use(Router)
 
 
 export const routeList = [
-	{
-		path: '/redirect/:path*',
-		component: layout,
-		meta: {
-			title: "重定向页面",
-			icon: "el-icon-s-home",
-			// isHide: true
-		},
-		component: () => import('~/layout/redirect/index')
-	},
+	// {
+	// 	path: '/redirect/:path*',
+	// 	component: layout,
+	// 	meta: {
+	// 		title: "重定向页面",
+	// 		icon: "el-icon-s-home",
+	// 		isHide: true
+	// 	},
+	// 	component: () => import('~/layout/redirect/index')
+	// },
 	{
 		path: '/index',
 		meta: {
@@ -29,16 +29,20 @@ export const routeList = [
 	{
 		path: '/dataview',
 		meta: {
-			title: "数据展示",
+			title: "源列表",
 			icon: "el-icon-s-home",
 		},
 		component: () => import('~/views/dataView/index.vue'),
 	},
 	{
-		path: '/newslist',
+		path: '/newslist/:id',
 		meta: {
 			title: "新闻列表",
 			icon: "el-icon-s-home",
+			isHide: true,
+			breadcrumb: true,
+			noCache: true,
+			activeMenu: '/dataview'
 		},
 		component: () => import('~/views/newslist/index.vue'),
 	},
