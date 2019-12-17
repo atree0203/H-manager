@@ -12,6 +12,7 @@ import store from '~/store/index';
 import echarts from 'echarts';
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import '~/assets/iconfont/iconfont.css'
 
 Vue.prototype.$echarts = echarts;
 

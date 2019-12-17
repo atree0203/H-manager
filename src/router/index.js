@@ -30,7 +30,7 @@ export const routeList = [
 		path: '/dataview',
 		meta: {
 			title: "源列表",
-			icon: "el-icon-s-home",
+			icon: "iconfont ali-icon-source",
 		},
 		component: () => import('~/views/dataView/index.vue'),
 	},
@@ -45,6 +45,18 @@ export const routeList = [
 			activeMenu: '/dataview'
 		},
 		component: () => import('~/views/newslist/index.vue'),
+	},
+	{
+		path: '/news-detail/:id',
+		meta: {
+			title: "新闻详情",
+			icon: "iconfont ali-icon-source",
+			isHide: true,
+			breadcrumb: true,
+			noCache: true,
+			activeMenu: '/dataview'
+		},
+		component: () => import('~/views/news-detail/index.vue'),
 	},
 	{
 		path: '/components',

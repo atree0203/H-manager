@@ -6,7 +6,7 @@
 				<!-- 一张图片样式 -->
 				<el-row :gutter="10" v-if="item.url_to_small_image.length===1">
 					<el-col :xs="16" :sm="20">
-						<div class="article-title">
+						<div class="article-title" @click="goNewsDetail(item.id)">
 							{{item.title}}
 						</div>
 					</el-col>
@@ -17,7 +17,7 @@
 				
 				<!-- 三张图片样式 -->
 				<div v-if="item.url_to_small_image.length===3">
-					<el-row class="article-title">{{item.title}}</el-row>
+					<el-row @click="goNewsDetail(item.id)" class="article-title">{{item.title}}</el-row>
 					<el-row>
 						<img class="article-img img-three" :src="item.url_to_small_image[0]" alt="">
 						<img class="article-img img-three" :src="item.url_to_small_image[1]" alt="">
@@ -76,11 +76,19 @@
 						}
 					}
 				})
+			},
+			goNewsDetail(id){
+				this.$store.commit('pushTagsCacheList', {
+					path: `/news-detail/${id}`,
+					title: `新闻详情:${id}`,
+				})
+				this.$router.push({
+					path: `/news-detail/${id}`
+				})
 			}
 		},
 		watch:{
 			'$route'(to,from){
-				console.log(to)
 				this.pageIndex = 0
 				this.newsListData = []
 				this.total_page = 1

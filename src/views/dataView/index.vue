@@ -221,7 +221,6 @@
 			},
 			loadMoreNews() {
 				this.loadingNewsArr = true
-
 			}
 		}
 	}
