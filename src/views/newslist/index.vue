@@ -17,7 +17,9 @@
 				
 				<!-- 三张图片样式 -->
 				<div v-if="item.url_to_small_image.length===3">
-					<el-row @click="goNewsDetail(item.id)" class="article-title">{{item.title}}</el-row>
+					<el-row class="article-title">
+						<div class="article-title-link" @click="goNewsDetail(item.id)">{{item.title}}</div>
+					</el-row>
 					<el-row>
 						<img class="article-img img-three" :src="item.url_to_small_image[0]" alt="">
 						<img class="article-img img-three" :src="item.url_to_small_image[1]" alt="">
@@ -99,6 +101,15 @@
 </script>
 
 <style scoped>
+	
+	.article-title-link{
+		cursor: pointer;
+	}
+	
+	.article-title-link:hover{
+		color: #000000;
+		text-decoration: underline;
+	}
 	
 	.el-row img{
 		transition: all 0.3s ease-in-out;

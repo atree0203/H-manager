@@ -1,5 +1,5 @@
 <template>
-	<div v-loading="loading" style="background-color: #f9f9f9;padding: 10px 350px;">
+	<div style="background-color: #f9f9f9;padding: 10px 350px;">
 
 		<div class="article-wrap" v-if="newsDetail.id">
 
@@ -56,7 +56,7 @@
 				</p>
 
 				<div v-if="item.imgurl" class="content-img">
-					<img :src="item.imgurl" alt="">
+					<el-image :src="item.imgurl" :fit="'contain'"></el-image>
 				</div>
 
 				<h6 v-if="item.imgdesc" class="content-desc">
@@ -77,23 +77,30 @@
 
 <script>
 	import {
+		Loading
+	} from 'element-ui';
+	import {
 		newsDeatilApi
 	} from '~/api/api.js'
 
 	export default {
 		data() {
 			return {
-				newsDetail: '',
-				loading: true
+				newsDetail: ''
 			}
 		},
 		created() {
-			
+			this.getNewsDetail()
 		},
 		methods: {
 			getNewsDetail() {
+				let loadingInstance = Loading.service({
+					text:'新闻加载中...'
+				})
 				newsDeatilApi(this.$route.params.id).then(res => {
-					this.loading = false
+					this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+					  loadingInstance.close();
+					});
 					if (res && res.code === 0) {
 						console.log(res)
 						this.newsDetail = res.data
@@ -123,8 +130,8 @@
 
 	.content-img img,
 		{
-		max-width: 100%;
-		height: auto;
+		min-width: 100%;
+
 	}
 
 	.content-img,
