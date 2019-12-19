@@ -8,9 +8,9 @@
                 class="el-menu-vertical-demo first-menu"
                 :router=true
                 :collapse="isCollapse"
-                :collapse-transition=false
+                :collapse-transition=true
                 :default-active="defaultActive"
-                :unique-opened=true
+                :unique-opened=false
                 @select="select">
 
                 <sidebar-item :index="item.path" v-for="item in routeList" :key="item.path" :item="item"></sidebar-item>

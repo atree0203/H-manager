@@ -44,7 +44,7 @@ Vue.use(VueI18n);
 
 
 const i18n = new VueI18n({
-	locale: localStorage.getItem("langData") || 'cn', //指定默认语言
+	locale: store.state.index.language, //指定默认语言
 	messages: {
 		cn: {
 			...require('~/lang/zh.json'),

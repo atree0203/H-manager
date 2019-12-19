@@ -2,6 +2,7 @@ import axios from "axios";
 import qs from "qs";
 import app from "../main.js";
 import router from '~/router/index';
+// import store from '~/store/index';
 
 
 /****** 创建axios实例 ******/
@@ -22,6 +23,7 @@ service.interceptors.request.use(config => {
 		};
 	config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 	config.headers['Accept-Language'] = 'en'
+	// config.headers['Accept-Language'] = store.state.index.language
 	if (config.url !== 'auth/login') {
 		config.headers['authorization'] = localStorage.getItem('Authorization');
 	}

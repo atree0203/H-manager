@@ -5,6 +5,8 @@ import login from '~/views/login/login'
 
 Vue.use(Router)
 
+console.log(Vue)
+
 
 export const routeList = [
 	// {
@@ -27,10 +29,20 @@ export const routeList = [
 	// 	component: () => import('~/views/index/index.vue'),
 	// },
 	{
+		path: '/statistics',
+		meta: {
+			title: "数据统计",
+			icon: "iconfont ali-icon-source",
+			requireAuth:false
+		},
+		component: () => import('~/views/statistics/line.vue'),
+	},
+	{
 		path: '/source',
 		meta: {
-			title: "源列表",
+			title: "源",
 			icon: "iconfont ali-icon-source",
+			requireAuth:false
 		},
 		component: () => import('~/views/dataView/index.vue'),
 	},
@@ -110,14 +122,14 @@ export const routeList = [
 	// 		}, ],
 	// 	}, ],
 	// },
-	// {
-	// 	path: '/about',
-	// 	meta: {
-	// 		title: "关于",
-	// 		icon: "el-icon-sugar"
-	// 	},
-	// 	component: () => import('~/views/about/index.vue'),
-	// },
+	{
+		path: '/about',
+		meta: {
+			title: "关于",
+			icon: "el-icon-sugar"
+		},
+		component: () => import('~/views/about/index.vue'),
+	},
 	// {
 	// 	path: '/echart',
 	// 	meta: {

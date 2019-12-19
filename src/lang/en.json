@@ -6,6 +6,8 @@
 		"appDownload": "APP Download"
 	},
 	"login": {
+		"login": "login",
+		"logining":"login in ...",
 		"phone": "phone number",
 		"phonePlaceHolder": "Please enter your mobile number",
 		"pwd": "password",

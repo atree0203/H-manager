@@ -2,7 +2,7 @@
 	<div id="particles-js">
 		<div class="login">
 			<div class="login-top">
-				登录
+				{{$t('login.login')}}
 			</div>
 			<div class="login-center clearfix">
 				<div class="login-center-img"><img src="../../assets/img/name.png" /></div>
@@ -40,7 +40,7 @@
 	export default {
 		data() {
 			return {
-				loginText: '登录',
+				loginText: this.$t('login.login'),
 				phonePlaceHolder: this.$t('login.phonePlaceHolder'),
 				pwdPlaceHolder: this.$t('login.pwdPlaceHolder')
 			}
@@ -74,7 +74,7 @@
 				// let loadingInstance = Loading.service({
 				// 	text:'登录...'
 				// })
-				this.loginText = '登录中...'
+				this.loginText = this.$t('login.logining')
 				const data = {
 					username: 'heshipeng',
 					password: 'heshipeng'

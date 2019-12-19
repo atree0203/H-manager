@@ -6,6 +6,8 @@
 		"appDownload": "APP 下载"
 	},
 	"login": {
+		"login": "登录",
+		"logining":"登录中...",
 		"phone": "手机号",
 		"phonePlaceHolder": "请输入您的手机号",
 		"pwd": "密码",
