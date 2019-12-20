@@ -26,7 +26,7 @@ export const countryApi = (params) => {
 	})
 };
 
-export const newsListApi = (id,params) => {
+export const newsListApi = (id, params) => {
 	return service({
 		url: `news?source_id=${id}`,
 		method: 'get',
@@ -41,3 +41,14 @@ export const newsDeatilApi = (id) => {
 		method: 'get'
 	})
 };
+
+
+export const countApi = (params) => {
+	return service({
+		url: 'news/count',
+		method: 'get',
+		params: params
+	})
+};
+
+

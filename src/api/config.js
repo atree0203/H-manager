@@ -1,6 +1,5 @@
 import axios from "axios";
 import qs from "qs";
-import app from "../main.js";
 import router from '~/router/index';
 // import store from '~/store/index';
 
