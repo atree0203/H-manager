@@ -32,7 +32,7 @@
 			return {
 				chart: null,
 				params: {
-					"from_date": "2019-12-10",
+					"from_date": "2019-12-17",
 					"to_date": "2019-12-18"
 				},
 				lengendObj:{
@@ -43,9 +43,6 @@
 							10: "instagram视频"
 						}
 			}
-		},
-		created(){
-			
 		},
 		mounted() {
 			this.getCount()
@@ -72,6 +69,25 @@
 			},
 			initChart(legendData,xAxisData,seriesData) {
 				this.chart = this.$echarts.init(document.getElementById(this.id))
+				let colorData =[
+							{
+								color:[137,189,27]
+							},
+							{								
+								color:[0,136,212]
+							},
+							{								
+								color:[219,50,51]								
+							},
+							{
+								color:[137,189,27]								
+							},
+							{
+								color:[0,136,212]
+							}														
+				]
+					
+				
 				seriesData = seriesData.map((item,index)=>{
 					console.log(item)
 					return {
@@ -87,26 +103,27 @@
 								}
 							},
 							areaStyle: {
-								normal: {
-									color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-										offset: 0,
-										color: 'rgba(137, 189, 27, 0.3)'
-									}, {
-										offset: 0.8,
-										color: 'rgba(137, 189, 27, 0)'
-									}], false),
-									shadowColor: 'rgba(0, 0, 0, 0.1)',
-									shadowBlur: 10
-								}
-							},
+									normal: {
+										color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+											offset: 0,
+											color: `rgba(${colorData[index].color[0]}, ${colorData[index].color[1]}, ${colorData[index].color[2]}, 0.3)` 
+										}, {
+											offset: 0.8,
+											color: `rgba(${colorData[index].color[0]}, ${colorData[index].color[1]}, ${colorData[index].color[2]}, 0)` 
+										}], false),
+										shadowColor: 'rgba(0, 0, 0, 0.1)',
+										shadowBlur: 10
+									}
+								},
+							
 							itemStyle: {
-								normal: {
-									color: 'rgb(137,189,27)',
-									borderColor: 'rgba(137,189,2,0.27)',
-									borderWidth: 12
-
-								}
-							},
+									normal: {
+										color: `rgb(${colorData[index].color[0]}, ${colorData[index].color[1]}, ${colorData[index].color[2]})` ,
+										borderColor: `rgba(${colorData[index].color[0]}, ${colorData[index].color[1]}, ${colorData[index].color[2]}, 0.2)` ,
+										borderWidth: 12
+									}
+								},
+							
 							data: item.num
 						}
 				})
@@ -185,110 +202,7 @@
 						}
 					}],
 					series:seriesData
-					// series: [{
-					// 		name: '图文',
-					// 		type: 'line',
-					// 		smooth: true,
-					// 		symbol: 'circle',
-					// 		symbolSize: 5,
-					// 		showSymbol: false,
-					// 		lineStyle: {
-					// 			normal: {
-					// 				width: 1
-					// 			}
-					// 		},
-					// 		areaStyle: {
-					// 			normal: {
-					// 				color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-					// 					offset: 0,
-					// 					color: 'rgba(137, 189, 27, 0.3)'
-					// 				}, {
-					// 					offset: 0.8,
-					// 					color: 'rgba(137, 189, 27, 0)'
-					// 				}], false),
-					// 				shadowColor: 'rgba(0, 0, 0, 0.1)',
-					// 				shadowBlur: 10
-					// 			}
-					// 		},
-					// 		itemStyle: {
-					// 			normal: {
-					// 				color: 'rgb(137,189,27)',
-					// 				borderColor: 'rgba(137,189,2,0.27)',
-					// 				borderWidth: 12
-
-					// 			}
-					// 		},
-					// 		data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 1]
-					// 	},
-					// 	// {
-					// 	// 	name: 'CTCC',
-					// 	// 	type: 'line',
-					// 	// 	smooth: true,
-					// 	// 	symbol: 'circle',
-					// 	// 	symbolSize: 5,
-					// 	// 	showSymbol: false,
-					// 	// 	lineStyle: {
-					// 	// 		normal: {
-					// 	// 			width: 1
-					// 	// 		}
-					// 	// 	},
-					// 	// 	areaStyle: {
-					// 	// 		normal: {
-					// 	// 			color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-					// 	// 				offset: 0,
-					// 	// 				color: 'rgba(0, 136, 212, 0.3)'
-					// 	// 			}, {
-					// 	// 				offset: 0.8,
-					// 	// 				color: 'rgba(0, 136, 212, 0)'
-					// 	// 			}], false),
-					// 	// 			shadowColor: 'rgba(0, 0, 0, 0.1)',
-					// 	// 			shadowBlur: 10
-					// 	// 		}
-					// 	// 	},
-					// 	// 	itemStyle: {
-					// 	// 		normal: {
-					// 	// 			color: 'rgb(0,136,212)',
-					// 	// 			borderColor: 'rgba(0,136,212,0.2)',
-					// 	// 			borderWidth: 12
-
-					// 	// 		}
-					// 	// 	},
-					// 	// 	data: [120, 110, 125, 145, 122, 165, 122, 220, 182, 191, 134, 150]
-					// 	// }, {
-					// 	// 	name: 'CUCC',
-					// 	// 	type: 'line',
-					// 	// 	smooth: true,
-					// 	// 	symbol: 'circle',
-					// 	// 	symbolSize: 5,
-					// 	// 	showSymbol: false,
-					// 	// 	lineStyle: {
-					// 	// 		normal: {
-					// 	// 			width: 1
-					// 	// 		}
-					// 	// 	},
-					// 	// 	areaStyle: {
-					// 	// 		normal: {
-					// 	// 			color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-					// 	// 				offset: 0,
-					// 	// 				color: 'rgba(219, 50, 51, 0.3)'
-					// 	// 			}, {
-					// 	// 				offset: 0.8,
-					// 	// 				color: 'rgba(219, 50, 51, 0)'
-					// 	// 			}], false),
-					// 	// 			shadowColor: 'rgba(0, 0, 0, 0.1)',
-					// 	// 			shadowBlur: 10
-					// 	// 		}
-					// 	// 	},
-					// 	// 	itemStyle: {
-					// 	// 		normal: {
-					// 	// 			color: 'rgb(219,50,51)',
-					// 	// 			borderColor: 'rgba(219,50,51,0.2)',
-					// 	// 			borderWidth: 12
-					// 	// 		}
-					// 	// 	},
-					// 	// 	data: [220, 182, 125, 145, 122, 191, 134, 150, 120, 110, 165, 122]
-					// 	// }
-					// ]
+					
 				})
 			}
 		}
